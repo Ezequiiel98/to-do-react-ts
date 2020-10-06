@@ -10,16 +10,16 @@ import styles from './index.module.scss';
 
 interface TaskInterface {
   id: number | string | undefined;
-  name: string | undefined;
+  nameTask: string | undefined;
   completed: boolean | undefined;
 }
 
-const App: React.FC = () => {
+const App: React.FC = () => { 
   const [tabShow, setTabShow] = useState<string>('all');
   const [allTasks, setAllTasks] = useState<TaskInterface[] | []>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAddNewTask = (newTask: TaskInterface) => {
+    setAllTasks(tasks => [...tasks, newTask])
   }
 
   return (
@@ -31,12 +31,12 @@ const App: React.FC = () => {
         <NavTabs  setTabShow={setTabShow} />
         { tabShow === 'all' && (
           <TabTasks>
-            <FormAddTask onSubmit={handleSubmit} />
+            <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'active' && (
           <TabTasks>
-            <FormAddTask onSubmit={handleSubmit} />
+            <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'completed' && (
