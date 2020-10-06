@@ -8,8 +8,20 @@ import FormAddTask from '../../components/FormAddTask';
 
 import styles from './index.module.scss';
 
+interface TaskInterface {
+  id: number | string | undefined;
+  name: string | undefined;
+  completed: boolean | undefined;
+}
+
 const App: React.FC = () => {
   const [tabShow, setTabShow] = useState<string>('all');
+  const [allTasks, setAllTasks] = useState<TaskInterface[] | []>([]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  }
+
   return (
     <div className={styles.containerApp}>
       <div>
@@ -19,12 +31,12 @@ const App: React.FC = () => {
         <NavTabs  setTabShow={setTabShow} />
         { tabShow === 'all' && (
           <TabTasks>
-            <FormAddTask />
+            <FormAddTask onSubmit={handleSubmit} />
           </TabTasks>
         )}
         { tabShow === 'active' && (
           <TabTasks>
-            <FormAddTask />
+            <FormAddTask onSubmit={handleSubmit} />
           </TabTasks>
         )}
         { tabShow === 'completed' && (
