@@ -12,7 +12,7 @@ type TabTasksProps = {
 const TabTasks: React.FC<TabTasksProps> = ({ children, positionChild = 'top' }) => {
 
   return (
-    <div>
+    <div className={styles.containerTabTask}>
       { positionChild === 'top' && children }
       <Task id="1" name="pepe" onClick={ (i: number | string) => console.log(i) } />
       { positionChild === 'bottom' && children }
