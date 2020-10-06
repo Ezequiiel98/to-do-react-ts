@@ -1,0 +1,48 @@
+.navTabs {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  min-width: 300px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+  position: relative;
+ 
+}
+
+@media screen and (min-width: 480px) {
+  .navTabs {
+    min-width: 450px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navTabs {
+    min-width: 650px;
+  }
+}
+
+
+.nameTab {
+  position: relative;
+  padding: 15px 10px 20px 10px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  min-width: 33.333%;
+  color: #fff;
+  font-size: 18px; 
+  text-align: center;
+  
+  &:hover {
+    cursor: pointer;
+  } 
+
+}
+
+.navMarker {
+    position: absolute;
+    bottom: -3px;
+    width: 33.333%; 
+    height: 5px;
+    background-color: #2F80ED;
+   transition: all  .5s ease;
+  }
