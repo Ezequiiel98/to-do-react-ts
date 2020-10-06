@@ -14,18 +14,17 @@ export interface TaskInterface {
 type TabTasksProps = {
   positionChild?: string | undefined;
   children?: React.ReactNode;
-  showTaskComplete?: boolean;
-  showAllTask?: boolean;
   tasks: TaskInterface[];
+  onDeleteTask: Function;
 }
 
-const TabTasks: React.FC<TabTasksProps> = ({ children, showTaskComplete, showAllTask, tasks,positionChild = 'top' }) => {
+const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, positionChild = 'top' }) => {
 
   return (
     <div className={styles.containerTabTask}>
       { positionChild === 'top' && children }
       { tasks.map(({ id, nameTask, completed }) => (
-        <Task id={id} name={nameTask} onClick={(idTask: number | string) => console.log(idTask)}/>
+        <Task id={id} name={nameTask} onClick={(idTask: number | string) => onDeleteTask(idTask)}/>
        ))}
       { positionChild === 'bottom' && tasks.length >= 1 && children }
      </div>

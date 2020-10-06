@@ -11,12 +11,17 @@ import styles from './index.module.scss';
 const App: React.FC = () => {
   const [tabShow, setTabShow] = useState<string>('all');
   const [allTasks, setAllTasks] = useState<TaskInterface[] | []>([]);
-  const completedTask: TaskInterface[]= allTasks.filter(task => task?.completed === true);
-  const activeTasks: TaskInterface[] = allTasks.filter(task => task?.completed !== true);
+  const completedTask: TaskInterface[] = allTasks.filter((task) => task?.completed);
+  const activeTasks: TaskInterface[] = allTasks.filter((task) => !task?.completed);
 
   const handleAddNewTask = (newTask: TaskInterface) => {
     setAllTasks(tasks => [...tasks, newTask])
   }
+  
+  const handleDeleteTask = (id: number | string) => {
+    const tasks = allTasks.filter((task) => task.id !== id);
+    setAllTasks(tasks);
+  };
 
   return (
     <div className={styles.containerApp}>
@@ -26,17 +31,17 @@ const App: React.FC = () => {
         </header>
         <NavTabs  setTabShow={setTabShow} />
         { tabShow === 'all' && (
-          <TabTasks tasks={allTasks} showAllTask>
+          <TabTasks tasks={allTasks} onDeleteTask={handleDeleteTask}>
             <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'active' && (
-          <TabTasks tasks={activeTasks} showTaskComplete={false}>
+          <TabTasks tasks={activeTasks} onDeleteTask={handleDeleteTask}>
             <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'completed' && (
-          <TabTasks positionChild="bottom" tasks={completedTask} showTaskComplete>
+          <TabTasks positionChild="bottom" tasks={completedTask} onDeleteTask={handleDeleteTask}>
             <Button position="right" danger>
               Delete All
             </Button>
