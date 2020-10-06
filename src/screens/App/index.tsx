@@ -3,20 +3,16 @@ import React, { useState } from 'react';
 import NavTabs from '../../components/NavTabs';
 import Button from '../../components/Button';
 import Task from '../../components/Task';
-import TabTasks from '../../components/TabTasks';
+import TabTasks, { TaskInterface } from '../../components/TabTasks';
 import FormAddTask from '../../components/FormAddTask';
 
 import styles from './index.module.scss';
 
-interface TaskInterface {
-  id: number | string | undefined;
-  nameTask: string | undefined;
-  completed: boolean | undefined;
-}
-
-const App: React.FC = () => { 
+const App: React.FC = () => {
   const [tabShow, setTabShow] = useState<string>('all');
   const [allTasks, setAllTasks] = useState<TaskInterface[] | []>([]);
+  const completedTask: TaskInterface[]= allTasks.filter(task => task?.completed === true);
+  const activeTasks: TaskInterface[] = allTasks.filter(task => task?.completed !== true);
 
   const handleAddNewTask = (newTask: TaskInterface) => {
     setAllTasks(tasks => [...tasks, newTask])
@@ -30,17 +26,17 @@ const App: React.FC = () => {
         </header>
         <NavTabs  setTabShow={setTabShow} />
         { tabShow === 'all' && (
-          <TabTasks>
+          <TabTasks tasks={allTasks} showAllTask>
             <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'active' && (
-          <TabTasks>
+          <TabTasks tasks={activeTasks} showTaskComplete={false}>
             <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'completed' && (
-          <TabTasks positionChild="bottom">
+          <TabTasks positionChild="bottom" tasks={completedTask} showTaskComplete>
             <Button position="right" danger>
               Delete All
             </Button>

@@ -4,19 +4,31 @@ import Task from '../Task';
 
 import styles from './index.module.scss';
 
+
+export interface TaskInterface {
+  id: number | string;
+  nameTask: string ;
+  completed: boolean;
+}
+
 type TabTasksProps = {
   positionChild?: string | undefined;
   children?: React.ReactNode;
+  showTaskComplete?: boolean;
+  showAllTask?: boolean;
+  tasks: TaskInterface[];
 }
 
-const TabTasks: React.FC<TabTasksProps> = ({ children, positionChild = 'top' }) => {
+const TabTasks: React.FC<TabTasksProps> = ({ children, showTaskComplete, showAllTask, tasks,positionChild = 'top' }) => {
 
   return (
     <div className={styles.containerTabTask}>
       { positionChild === 'top' && children }
-      <Task id="1" name="pepe" onClick={ (i: number | string) => console.log(i) } />
-      { positionChild === 'bottom' && children }
-    </div>
+      { tasks.map(({ id, nameTask, completed }) => (
+        <Task id={id} name={nameTask} onClick={(idTask: number | string) => console.log(idTask)}/>
+       ))}
+      { positionChild === 'bottom' && tasks.length >= 1 && children }
+     </div>
   );
 };
 

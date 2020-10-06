@@ -32,7 +32,12 @@ const FormAddTask: React.FC<FormAddTaskProps> = ({ onAddNewTask }) => {
     <>
       {error && <p className={styles.errorMessage}>Name task is required</p>}
       <form className={styles.formAddTask} onSubmit={handleSubmit}>
-        <input placeholder="Add task..." className={error ? styles.inputError : styles.inputTask} type="text" value={nameTask} onChange={handleChange} />
+        <input 
+          placeholder="Add task..."
+          className={error ? styles.inputError : styles.inputTask}
+          type="text" value={nameTask}
+          onChange={handleChange}
+        />
         <Button {...{ type: 'submit' }} primary>
           Add
         </Button>
