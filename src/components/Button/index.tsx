@@ -16,7 +16,8 @@ const Button: React.FC<ButtonProps> = ({ danger, primary, position, children, on
   styleButton = danger ? 'danger' : styleButton;
   styleButton = primary ? 'primary' : styleButton;
 
-  let positionButton = 'left';
+  let positionButton = 'positionNone';
+  positionButton = position === 'left' ? 'left' : positionButton;
   positionButton = position === 'right' ? 'right' : positionButton;
   positionButton = position === 'center' ? 'center' : positionButton;
 
