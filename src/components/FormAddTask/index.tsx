@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 const FormAddTask: React.FC = () => (
   <form className={styles.formAddTask}>
     <input placeholder="Add task..." className={styles.inputTask} type="text" />
-    <Button primary>
+    <Button {...{ type: 'submit' }} primary>
       Add
     </Button>
   </form>
