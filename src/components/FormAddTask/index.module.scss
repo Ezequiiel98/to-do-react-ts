@@ -1,0 +1,27 @@
+.formAddTask {
+ padding: 20px 0;
+ display: flex;
+ justify-content: space-between; 
+}
+
+.inputTask{
+  flex: 1;
+  margin-right: 20px;
+  padding: 15px;
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+}
+
+.buttonAdd {
+  min-width: 100px;
+  padding: 10px;
+  background-color: #2F80ED;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  &>p{
+    padding:0;
+  }
+}
+
