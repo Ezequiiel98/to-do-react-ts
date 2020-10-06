@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import NavTabs from '../../components/NavTabs';
 import Button from '../../components/Button';
@@ -8,26 +8,35 @@ import FormAddTask from '../../components/FormAddTask';
 
 import styles from './index.module.scss';
 
-const App: React.FC = () => (
-  <div className={styles.containerApp}>
-    <div>
-      <header>
-        <h1 className={styles.titleApp}>#todo</h1>
-      </header>
-      <NavTabs />
-      <TabTasks />
-      <TabTasks>
-        <FormAddTask />
-      </TabTasks>
-      <TabTasks positionChild="bottom">
-        <Button position="right" danger>
-          Delete All
-        </Button>
-        
-      </TabTasks>
-
+const App: React.FC = () => {
+  const [tabShow, setTabShow] = useState<string>('all');
+  return (
+    <div className={styles.containerApp}>
+      <div>
+        <header>
+          <h1 className={styles.titleApp}>#todo</h1>
+        </header>
+        <NavTabs  setTabShow={setTabShow} />
+        { tabShow === 'all' && (
+          <TabTasks>
+            <FormAddTask />
+          </TabTasks>
+        )}
+        { tabShow === 'active' && (
+          <TabTasks>
+            <FormAddTask />
+          </TabTasks>
+        )}
+        { tabShow === 'completed' && (
+          <TabTasks positionChild="bottom">
+            <Button position="right" danger>
+              Delete All
+            </Button>
+          </TabTasks>
+        )}
       </div>
-  </div>
-);
+    </div>
+  );
+};
 
 export default App;
