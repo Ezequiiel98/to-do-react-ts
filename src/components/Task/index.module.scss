@@ -1,0 +1,30 @@
+.task {
+ display: flex;
+ padding: 0 10px;
+ align-items: center;
+ font-size: 18px;
+ 
+ & > button:last-of-type {
+   margin: auto 0 auto auto;
+   padding-right: 0;
+ }
+
+}
+
+.check {
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  margin-right: 20px;
+  
+  &:checked ~ p {
+    opacity: 0.8;
+    text-decoration: line-through #fff;
+  }
+}
+
+.iconDelete {
+  pointer-events: none;
+}
