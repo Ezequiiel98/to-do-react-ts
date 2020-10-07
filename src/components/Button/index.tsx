@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './index.module.scss';
 
@@ -29,3 +30,18 @@ const Button: React.FC<ButtonProps> = ({ danger, primary, position, children, on
 };
 
 export default Button;
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  danger: PropTypes.bool,
+  primary: PropTypes.bool,
+  position: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  danger: false,
+  primary: false,
+  position: '',
+  onClick: () => {},
+};

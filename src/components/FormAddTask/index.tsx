@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '../Button';
 
@@ -32,10 +33,11 @@ const FormAddTask: React.FC<FormAddTaskProps> = ({ onAddNewTask }) => {
     <>
       {error && <p className={styles.errorMessage}>Name task is required</p>}
       <form className={styles.formAddTask} onSubmit={handleSubmit}>
-        <input 
+        <input
           placeholder="Add task..."
           className={error ? styles.inputError : styles.inputTask}
-          type="text" value={nameTask}
+          type="text"
+          value={nameTask}
           onChange={handleChange}
         />
         <Button {...{ type: 'submit' }} primary>
@@ -44,6 +46,10 @@ const FormAddTask: React.FC<FormAddTaskProps> = ({ onAddNewTask }) => {
       </form>
     </>
   );
+};
+
+FormAddTask.propTypes = {
+  onAddNewTask: PropTypes.func.isRequired,
 };
 
 export default FormAddTask;

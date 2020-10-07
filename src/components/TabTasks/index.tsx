@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Task from '../Task';
 
@@ -23,16 +24,38 @@ const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, onCh
 
   const deleteTask = (idTask: number | string) => onDeleteTask(idTask);
   const checkTask = (idTask: number | string) => onCheckTask(idTask);
-  
+ 
   return (
     <div className={styles.containerTabTask}>
       { positionChild === 'top' && children }
       { tasks.map(({ id, nameTask, completed }) => (
-        <Task key={id} id={id} name={nameTask} completed={completed} onClickDelete={deleteTask} onChangeCheked={checkTask} />
-       ))}
+        <Task
+          key={id}
+          id={id}
+          name={nameTask}
+          completed={completed}
+          onClickDelete={deleteTask}
+          onChangeCheked={checkTask}
+        />
+      ))}
       { positionChild === 'bottom' && tasks.length >= 1 && children }
-     </div>
+    </div>
   );
+};
+
+TabTasks.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
+  onCheckTask: PropTypes.func.isRequired,
+  onDeleteAllTasks: PropTypes.func,
+  positionChild: PropTypes.oneOf(['top', 'bottom']),
+  children: PropTypes.node,
+};
+
+TabTasks.defaultProps = {
+  onDeleteAllTasks: () => {},
+  children: '',
+  positionChild: '',
 };
 
 export default TabTasks;

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './index.module.scss';
 
 type NavTabsProps = {
@@ -16,18 +18,22 @@ const NavTabs: React.FC<NavTabsProps> = ({ setTabShow }) => {
 
   return (
     <nav className={styles.navTabs}>
-      <button className={styles.nameTab} type="button" onClick={e => handleClick(e, 'all')}>
+      <button className={styles.nameTab} type="button" onClick={(e) => handleClick(e, 'all')}>
         All
       </button>
-      <button className={styles.nameTab} type="button" onClick={e => handleClick(e, 'active')}>
+      <button className={styles.nameTab} type="button" onClick={(e) => handleClick(e, 'active')}>
         Active
       </button>
-      <button className={styles.nameTab} type="button" onClick={e => handleClick(e, 'completed')}>
+      <button className={styles.nameTab} type="button" onClick={(e) => handleClick(e, 'completed')}>
         Completed
       </button>
       <span className={styles.navMarker} style={{ left: `${left}px` }} />
     </nav>
   );
+};
+
+NavTabs.propTypes = {
+  setTabShow: PropTypes.func.isRequired,
 };
 
 export default NavTabs;
