@@ -27,7 +27,7 @@ const Task: React.FC<TaskProps> = ({ name, id, completed, onClickDelete, onChang
 Task.propTypes = {
   completed: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   onClickDelete: PropTypes.func.isRequired,
   onChangeCheked: PropTypes.func.isRequired,
 };

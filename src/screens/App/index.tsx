@@ -55,7 +55,7 @@ const App: React.FC = () => {
     <div className={styles.containerApp}>
       <div>
         <header>
-          <h1 className={styles.titleApp}>#todo</h1>
+          <h1 className={styles.titleApp}>#ToDo</h1>
         </header>
         <NavTabs setTabShow={setTabShow} />
         { tabShow === 'all' && (
