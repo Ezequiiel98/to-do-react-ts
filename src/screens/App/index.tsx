@@ -34,25 +34,29 @@ const App: React.FC = () => {
 
     setAllTasks(tasks);
   };
-  
+
   const handleDeleteCompleteTasks = () => {
     setAllTasks(activeTasks);
-  }
-  
+  };
+
   return (
     <div className={styles.containerApp}>
       <div>
         <header>
           <h1 className={styles.titleApp}>#todo</h1>
         </header>
-        <NavTabs  setTabShow={setTabShow} />
+        <NavTabs setTabShow={setTabShow} />
         { tabShow === 'all' && (
           <TabTasks tasks={allTasks} onCheckTask={handleCheckTask} onDeleteTask={handleDeleteTask}>
             <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
         { tabShow === 'active' && (
-          <TabTasks tasks={activeTasks} onCheckTask={handleCheckTask} onDeleteTask={handleDeleteTask}>
+          <TabTasks
+            tasks={activeTasks}
+            onCheckTask={handleCheckTask}
+            onDeleteTask={handleDeleteTask}
+          >
             <FormAddTask onAddNewTask={handleAddNewTask} />
           </TabTasks>
         )}
@@ -63,9 +67,10 @@ const App: React.FC = () => {
             onCheckTask={handleCheckTask}
             onDeleteTask={handleDeleteTask}
           >
-            <Button position="right" onClick={handleDeleteCompleteTasks} danger>
-              Delete All
-            </Button>
+            {completedTask.length >= 1 && (<Button position="right" onClick={handleDeleteCompleteTasks} danger>
+                Delete All
+              </Button>
+            )}
           </TabTasks>
         )}
       </div>

@@ -6,9 +6,13 @@
   animation-duration: .6s;;
   animation-fill-mode: forwards;
   animation-timing-function: ease;
-  
+
+  & > div:first-of-type {
+    margin-top: 10px;
+  }
+
   & > button:last-of-type {
-    margin-top: 30px;
+    margin-top: 20px;
   }
 }
 
