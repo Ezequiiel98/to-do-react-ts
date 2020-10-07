@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import NavTabs from '../../components/NavTabs';
 import Button from '../../components/Button';
@@ -8,9 +8,12 @@ import FormAddTask from '../../components/FormAddTask';
 
 import styles from './index.module.scss';
 
+
+    const ALL_TASKS = localStorage.getItem('ALL_TASKS');
+    const initState: TaskInterface[] = ALL_TASKS ? JSON.parse(ALL_TASKS) : [];
 const App: React.FC = () => {
   const [tabShow, setTabShow] = useState<string>('all');
-  const [allTasks, setAllTasks] = useState<TaskInterface[] | []>([]);
+  const [allTasks, setAllTasks] = useState<TaskInterface[] | []>(initState);
   const completedTask: TaskInterface[] = allTasks.filter((task) => task?.completed);
   const activeTasks: TaskInterface[] = allTasks.filter((task) => !task?.completed);
 
@@ -38,6 +41,14 @@ const App: React.FC = () => {
   const handleDeleteCompleteTasks = () => {
     setAllTasks(activeTasks);
   };
+ 
+  useEffect(() => {
+    const saveTasks = () => {
+      localStorage.setItem('ALL_TASKS', JSON.stringify(allTasks));
+    };
+
+    saveTasks();
+  }, [allTasks]);
 
   return (
     <div className={styles.containerApp}>
