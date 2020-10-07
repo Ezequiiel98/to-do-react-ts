@@ -9,8 +9,9 @@ import FormAddTask from '../../components/FormAddTask';
 import styles from './index.module.scss';
 
 
-    const ALL_TASKS = localStorage.getItem('ALL_TASKS');
-    const initState: TaskInterface[] = ALL_TASKS ? JSON.parse(ALL_TASKS) : [];
+const ALL_TASKS = localStorage.getItem('ALL_TASKS');
+const initState: TaskInterface[] = ALL_TASKS ? JSON.parse(ALL_TASKS) : [];
+
 const App: React.FC = () => {
   const [tabShow, setTabShow] = useState<string>('all');
   const [allTasks, setAllTasks] = useState<TaskInterface[] | []>(initState);

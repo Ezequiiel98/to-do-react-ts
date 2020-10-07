@@ -20,7 +20,7 @@ type TabTasksProps = {
   onDeleteAllTasks?: Function;
 }
 
-const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, onCheckTask, onDeleteAllTasks, positionChild = 'top' }) => {
+const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, onCheckTask, onDeleteAllTasks, positionChild }) => {
 
   const deleteTask = (idTask: number | string) => onDeleteTask(idTask);
   const checkTask = (idTask: number | string) => onCheckTask(idTask);
@@ -55,7 +55,7 @@ TabTasks.propTypes = {
 TabTasks.defaultProps = {
   onDeleteAllTasks: () => {},
   children: '',
-  positionChild: '',
+  positionChild: 'top',
 };
 
 export default TabTasks;
