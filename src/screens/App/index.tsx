@@ -35,7 +35,7 @@ const App: React.FC = () => {
     setAllTasks(tasks);
   };
   
-  const handleDeleteAll = () => {
+  const handleDeleteCompleteTasks = () => {
     setAllTasks(activeTasks);
   }
   
@@ -57,8 +57,13 @@ const App: React.FC = () => {
           </TabTasks>
         )}
         { tabShow === 'completed' && (
-          <TabTasks positionChild="bottom" tasks={completedTask}  onCheckTask={handleCheckTask} onDeleteTask={handleDeleteTask}>
-            <Button position="right" danger>
+          <TabTasks
+            positionChild="bottom"
+            tasks={completedTask}
+            onCheckTask={handleCheckTask}
+            onDeleteTask={handleDeleteTask}
+          >
+            <Button position="right" onClick={handleDeleteCompleteTasks} danger>
               Delete All
             </Button>
           </TabTasks>

@@ -4,7 +4,6 @@ import Task from '../Task';
 
 import styles from './index.module.scss';
 
-
 export interface TaskInterface {
   id: number | string;
   nameTask: string ;
@@ -17,9 +16,10 @@ type TabTasksProps = {
   tasks: TaskInterface[];
   onDeleteTask: Function;
   onCheckTask: Function;
+  onDeleteAllTasks?: Function;
 }
 
-const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, onCheckTask, positionChild = 'top' }) => {
+const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, onCheckTask, onDeleteAllTasks, positionChild = 'top' }) => {
 
   const deleteTask = (idTask: number | string) => onDeleteTask(idTask);
   const checkTask = (idTask: number | string) => onCheckTask(idTask);
