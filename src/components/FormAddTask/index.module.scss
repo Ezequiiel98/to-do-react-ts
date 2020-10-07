@@ -1,15 +1,51 @@
 .formAddTask {
- padding: 20px 0;
+ padding: 20px  0 0 0;
  display: flex;
- justify-content: space-between; 
+ justify-content: space-between;
 }
 
 .inputTask{
   flex: 1;
   margin-right: 20px;
   padding: 15px;
-  border: 1px solid #f3f3f3;
+  border: 3px solid #f3f3f3;
   border-radius: 10px;
+  outline: none;
+
+  &:focus {
+    border-color: #2F80ED;
+  }
 }
 
+.inputError {
+  @extend .inputTask;
+  border-color: #EB5757;
+  
+  &:focus {
+    border-color: v#EB5757;
+  }
+}
 
+.errorMessage {
+  margin: 20px 0 0 0;
+  padding: 5px;
+  text-align: center;
+  background-color: #EB5757;
+  animation-name: showError;
+  animation-duration: .6s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showError {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  
+  to {
+    transform: translateX(0);
+    opacity: 1; 
+  }
+
+}

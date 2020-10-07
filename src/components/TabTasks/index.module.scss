@@ -1,5 +1,29 @@
 .containerTabTask {
-  & > div:last-of-type {
-    margin-bottom: 30px;
+  opacity: 0;
+  visibility: none;
+  transform: translateY(20px);
+  animation-name: show;
+  animation-duration: .6s;;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+
+  & > div:first-of-type {
+    margin-top: 10px;
+  }
+
+  & > button:last-of-type {
+    margin-top: 20px;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    visibility: none;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
