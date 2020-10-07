@@ -16,15 +16,19 @@ type TabTasksProps = {
   children?: React.ReactNode;
   tasks: TaskInterface[];
   onDeleteTask: Function;
+  onCheckTask: Function;
 }
 
-const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, positionChild = 'top' }) => {
+const TabTasks: React.FC<TabTasksProps> = ({ children, tasks, onDeleteTask, onCheckTask, positionChild = 'top' }) => {
 
+  const deleteTask = (idTask: number | string) => onDeleteTask(idTask);
+  const checkTask = (idTask: number | string) => onCheckTask(idTask);
+  
   return (
     <div className={styles.containerTabTask}>
       { positionChild === 'top' && children }
       { tasks.map(({ id, nameTask, completed }) => (
-        <Task id={id} name={nameTask} onClick={(idTask: number | string) => onDeleteTask(idTask)}/>
+        <Task key={id} id={id} name={nameTask} completed={completed} onClickDelete={deleteTask} onChangeCheked={checkTask} />
        ))}
       { positionChild === 'bottom' && tasks.length >= 1 && children }
      </div>
