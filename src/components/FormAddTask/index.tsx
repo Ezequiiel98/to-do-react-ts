@@ -31,7 +31,7 @@ const FormAddTask: React.FC<FormAddTaskProps> = ({ onAddNewTask }) => {
 
   return (
     <>
-      {error && <p className={styles.errorMessage}>Name task is required</p>}
+      {error && <p className={styles.errorMessage}>Task name task</p>}
       <form className={styles.formAddTask} onSubmit={handleSubmit}>
         <input
           placeholder="Add task..."
